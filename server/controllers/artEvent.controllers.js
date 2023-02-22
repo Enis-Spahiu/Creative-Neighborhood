@@ -18,7 +18,7 @@ module.exports.createEvent=(req,res)=>{
 }
 module.exports.getOneEvent=(req,res)=>{
     Event.findById(req.params.id)
-        .populate("user_id", "username email -_id")
+        .populate("user_id", "username email ")
         .populate("comments", "comment user_id -_id")
         .then(oneEvent=>res.json(oneEvent))
         .catch(err=>res.json({message:'Missing Event',err}))
