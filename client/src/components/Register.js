@@ -17,18 +17,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Container } from '@mui/system';
 import "./styles.css";
 
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
 
   const theme = createTheme({
     palette:{
@@ -50,10 +38,10 @@ function Copyright(props) {
 
 
     const navigate = useNavigate()
-    // eslint-disable-next-line
-  const [confirmReg, setConfirmReg]=useState('');
   const [errs, setErrs]= useState([]);
   const [user, setUser]= useState({
+        name:"",
+        lastname:"",
         username:"",
         email:"",
         password:"",
@@ -89,7 +77,7 @@ function Copyright(props) {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -101,8 +89,49 @@ function Copyright(props) {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1.5 }}>
             <Grid container spacing={2}>
+              <Grid item xs={12}>
+              <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  className="inputRounded"
+                  variant="outlined"
+                  sx={{bgcolor:"white", borderRadius:"25px"}}
+                  onChange={(e)=> handleChange(e)}
+                  id="name"
+                  label="Name"
+                  name="name"
+                  autoComplete="name"
+                  autoFocus
+                />
+                {
+                    errs.name ?
+                        <Typography color="red">{errs.name.message}</Typography>
+                        :null
+                }
+              </Grid>
+              <Grid item xs={12}>
+              <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  className="inputRounded"
+                  variant="outlined"
+                  sx={{bgcolor:"white", borderRadius:"25px"}}
+                  onChange={(e)=> handleChange(e)}
+                  id="lastname"
+                  label="Last name"
+                  name="lastname"
+                  autoComplete="lastname"
+                />
+                {
+                    errs.lastname ?
+                        <Typography color="red">{errs.lastname.message}</Typography>
+                        :null
+                }
+              </Grid>
               <Grid item xs={12}>
               <TextField
                   margin="normal"
@@ -116,7 +145,6 @@ function Copyright(props) {
                   label="Username"
                   name="username"
                   autoComplete="username"
-                  autoFocus
                 />
                 {
                     errs.username ?
@@ -213,7 +241,6 @@ function Copyright(props) {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
       </Grid>
     </ThemeProvider>
