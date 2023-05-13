@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const dbName = process.env.DB_NAME
+const DB = process.env.DB_NAME
 
-mongoose.connect('mongodb://localhost/' + dbName,{
+mongoose.connect(DB,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
